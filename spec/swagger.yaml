@@ -13,27 +13,6 @@ info:
     url: 'https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png'
 paths:
   '/audience/{sk}/{apiName}':
-    delete:
-      tags:
-        - Audience
-      summary: Remove all members from specified Audience.
-      operationId: delete
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - $ref: '#/parameters/Sitekey'
-        - $ref: '#/parameters/AudienceApiName'
-      responses:
-        '200':
-          description: Members removed from Audience
-        '401':
-          description: Invalid OAuth 2.0 token
-        '403':
-          description: User not authorized to perform operation
-        '404':
-          description: Specified Audience not found
     post:
       tags:
         - Audience
@@ -62,6 +41,27 @@ paths:
           description: Invalid OAuth 2.0 token
         '403':
           description: User lacks permissions to perform operation
+        '404':
+          description: Specified Audience not found
+    delete:
+      tags:
+        - Audience
+      summary: Remove all members from specified Audience.
+      operationId: delete
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Sitekey'
+        - $ref: '#/parameters/AudienceApiName'
+      responses:
+        '200':
+          description: Members removed from Audience
+        '401':
+          description: Invalid OAuth 2.0 token
+        '403':
+          description: User not authorized to perform operation
         '404':
           description: Specified Audience not found
 definitions:

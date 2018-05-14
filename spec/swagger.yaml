@@ -1,14 +1,14 @@
 swagger: '2.0'
 info:
   description: |
-    The ONE Batch API enables bulk changes to one or more of your customers profiles in ONE.
+    The Batch API enables you to make bulk changes to customer profiles.
     Calls to this API are processed asynchronously.
 
-    The ONE BATCH API supports:
+    The BATCH API supports:
     * Adding customers to a given Audience.
     * Removing all customers from a given Audience.
   version: 3.1.0
-  title: ONE-BATCH-API
+  title: BATCH-API
   x-logo:
     url: 'https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png'
 paths:
@@ -78,7 +78,7 @@ definitions:
     properties:
       tids:
         type: array
-        description: Array of ONE tids to add to Audience
+        description: Array of TIDs to add to Audience
         maxItems: 1000
         items:
           type: string
@@ -90,7 +90,7 @@ parameters:
     in: path
     type: string
     required: true
-    description: The ONE Site Key for your Space, for example ONE-JY0AMQJQHQ-1290
+    description: The Site Key for your Space, for example ONE-JY0AMQJQHQ-1290
   AudienceApiName:
     name: apiName
     in: path

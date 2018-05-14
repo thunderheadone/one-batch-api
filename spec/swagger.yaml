@@ -1,0 +1,111 @@
+swagger: '2.0'
+info:
+  description: |
+    The ONE Batch API enables bulk changes to one or more of your customers profiles in ONE.
+    Calls to this API are processed asynchronously.
+
+    The ONE BATCH API supports:
+    * Adding customers to a given Audience.
+    * Removing all customers from a given Audience.
+  version: 3.1.0
+  title: ONE-BATCH-API
+  x-logo:
+    url: 'https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png'
+paths:
+  '/audience/{sk}/{apiName}':
+    delete:
+      tags:
+        - Audience
+      summary: Remove all members from specified Audience.
+      operationId: delete
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Sitekey'
+        - $ref: '#/parameters/AudienceApiName'
+      responses:
+        '200':
+          description: Members removed from Audience
+        '401':
+          description: Invalid OAuth 2.0 token
+        '403':
+          description: User not authorized to perform operation
+        '404':
+          description: Specified Audience not found
+    post:
+      tags:
+        - Audience
+      summary: Add customers to an Audience.
+      operationId: addToAudience
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Sitekey'
+        - $ref: '#/parameters/AudienceApiName'
+        - name: audienceAddRequest
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AudienceAddRequest'
+      responses:
+        '200':
+          description: Request successful
+        '400':
+          description: Bad input parameter
+          schema:
+            $ref: '#/definitions/AudienceAddError'
+        '401':
+          description: Invalid OAuth 2.0 token
+        '403':
+          description: User lacks permissions to perform operation
+        '404':
+          description: Specified Audience not found
+definitions:
+  AudienceAddError:
+    description: Audience Error
+    type: object
+    properties:
+      errorMessage:
+        description: Error description
+        type: string
+        example: Invalid Audience request
+  AudienceAddRequest:
+    type: object
+    properties:
+      tids:
+        type: array
+        description: Array of ONE tids to add to Audience
+        maxItems: 1000
+        items:
+          type: string
+          format: uuid
+          example: [d290f1ee-6c54-4b01-90e6-d701748f0851, b217942d-5aa3-e442-7a70-c2f73cb44d9b, aa4f0797-4ea3-80be-29e5-142139c14af3]
+parameters:
+  Sitekey:
+    name: sk
+    in: path
+    type: string
+    required: true
+    description: The ONE Site Key for your Space, for example ONE-JY0AMQJQHQ-1290
+  AudienceApiName:
+    name: apiName
+    in: path
+    type: string
+    required: true
+    description: The API name of the required Audience, for example Goldcarddropoffs
+schemes:
+  - https
+security:
+  - OAuth2: []
+securityDefinitions:
+  OAuth2:
+    type: oauth2
+    flow: application
+    tokenUrl: 'https://eu2.thunderhead.com/one/oauth2token'
+    scopes: {}
+host: eu2.thunderhead.com
+basePath: /api/batch/3.1.0

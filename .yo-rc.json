@@ -1,0 +1,11 @@
+{
+  "generator-openapi-repo": {
+    "importExistingSpec": true,
+    "importedSpec": "../spec/swagger.yaml",
+    "name": "Batch API",
+    "repo": "thunderheadone/one-batch-api",
+    "splitSpec": false,
+    "samples": false,
+    "installSwaggerUI": true
+  }
+}

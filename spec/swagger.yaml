@@ -83,7 +83,7 @@ definitions:
         items:
           type: string
           format: uuid
-          example: [d290f1ee-6c54-4b01-90e6-d701748f0851, b217942d-5aa3-e442-7a70-c2f73cb44d9b, aa4f0797-4ea3-80be-29e5-142139c14af3]
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851, b217942d-5aa3-e442-7a70-c2f73cb44d9b, aa4f0797-4ea3-80be-29e5-142139c14af3
 parameters:
   Sitekey:
     name: sk
